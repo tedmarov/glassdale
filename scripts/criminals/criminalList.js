@@ -2,7 +2,7 @@ import { getCriminals, useCriminals } from "./criminalProvider.js"
 import { Criminal } from "./criminal.js"
 
 
-const criminalElement = document.querySelector(".criminalsContainer")
+const criminalElement = document.querySelector(".criminals__list")
 
 export const criminalList = () => {
     getCriminals().then(() => {
