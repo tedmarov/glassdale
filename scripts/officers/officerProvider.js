@@ -13,4 +13,4 @@ export const getOfficers = () => {
                 officers = parsedOfficers
             }
         )
-}
+}   
