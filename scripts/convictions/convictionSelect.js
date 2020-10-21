@@ -1,8 +1,10 @@
 /*
- *   ConvictionSelect component that renders a select HTML element
- *   which lists all convictions in the Glassdale PD API
- */
+*   ConvictionSelect component that renders a select HTML element
+*   which lists all convictions in the Glassdale PD API
+*/
 import { getConvictions, useConvictions } from "./convictionProvider.js"
+
+const contentTarget = document.querySelector(".filters__crime")
 
 const render = convictionsCollection => {
     /*
@@ -11,41 +13,71 @@ const render = convictionsCollection => {
         Look back at the example provided above.
     */
     contentTarget.innerHTML = `
-        <select id="crimeSelect">
+        <select class="dropdown" id="crimeSelect">
             <option value="0">Please select a crime...</option>
             ${convictionsCollection.map(
-                    convictionObject => ` 
-                    <option value="${convictionObject.id}">${convictionObject.name}</option>
-                    `)
+                    convictionObject => {
+                    return `<option value="${convictionObject.id}">${convictionObject.name}</option>`
+                    }
+                ).join("")
             }
         </select>
     `
 }
 
+// Previous version
+// export const convictionSelect = () => {
+//     // Get all convictions from application state
+//     getConvictions().then( () => {
+//         const appStateConvictions = useConvictions()
+//         render(appStateConvictions)
+// })
+// }
+
 export const convictionSelect = () => {
-    // Get all convictions from application state
-    getConvictions().then( () => {
-        const appStateConvictions = useConvictions()
-        render(appStateConvictions)
-})
+    getConvictions()
+        .then(() => {
+            const convictions = useConvictions()
+            render(convictions)
+        })
 }
 
 // Get a reference to the DOM element where the <select> will be rendered
-const contentTarget = document.querySelector(".filters__crime")
-// const eventHub = document.querySelector(".container")
 
-// eventHub.addEventListener("change", changeEvent => { 
-//     if (changeEvent.target.id.startsWith("crimeSelect")) {
-     
-//         const convictionName = changeEvent.target.convictionObjecct.id
+/*
+    Which element in your HTML contains all components?
+    That's your Event Hub. Get a reference to it here.
+*/
 
-//         const convictionChosenEvent = new CustomEvent("convictionChosen", {
+const eventHub = document.querySelector(".container")
 
-//             detail: {
-//                 conviction: convictionName
-//             }
-//         })
-//         eventHub.dispatchEvent(convictionChosenEvent)
-//     }
-// })
+// On the event hub, listen for a "change" event.
+eventHub.addEventListener("change", (changeEvent) => { 
+
+// Only do this if the `crimeSelect` element was changed
+    if (changeEvent.target.id === "crimeSelect") {
+
+        // Create custom event. Provide an appropriate name.
+
+        const customEvent = new CustomEvent("crimeSelected", {
+            detail: {
+                crimeThatWasChosen: parseInt(changeEvent.target.value)
+            }
+        })
+        // Dispatch to event hub
+        eventHub.dispatchEvent(customEvent)
+    }
+})
+
+
+    // contentTarget.addEventListener("change", (event) => {
+
+    // if (event.target.id === "crimeSelect")
+    //     const customEvent = new CustomEvent("convictionChosen", {
+    //         detail: {
+    //             crimeThatWasChosen: event.target.value
+    //     }
+    // })
+    // eventHub.dispatchEvent(event)
+    // })
 
