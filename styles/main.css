@@ -27,6 +27,22 @@ h1,h2,h3,h4,h5,h6 {
     background-color: white;
 }
 
+.filters{
+  display: flex;
+  align-items: center;
+}
+
+.filters__crime{
+  padding: 5px;
+}
+
+.filters__officers{
+  padding: 5px;
+}
+
+.filters__incarceration{
+  padding: 5px;
+}
 
 body{
 

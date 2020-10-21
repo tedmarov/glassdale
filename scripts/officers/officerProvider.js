@@ -1,7 +1,7 @@
-let officers = []
+let officerDB = []
 
 export const useOfficers = () => {
-    return officers.slice
+    return officerDB.slice()
 }
 
 export const getOfficers = () => {
@@ -10,7 +10,7 @@ export const getOfficers = () => {
         .then(
             parsedOfficers => { 
                 console.table(parsedOfficers)
-                officers = parsedOfficers
+                officerDB = parsedOfficers
             }
         )
 }   

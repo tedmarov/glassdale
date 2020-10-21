@@ -17,9 +17,3 @@ export const getCriminals = () => {
     
     
 }
-
-// export const getConvictionsByCriminal = conviction => {
-//     const convictionCriminals = useCriminals()
-
-//     return convictionCriminals.filter(c => c.conviction === conviction)
-// }
