@@ -1,0 +1,20 @@
+{
+  "notes": [
+    {
+      "dateOfInterview": "10/21/2020",
+      "timestamp": "10/22/2020",
+      "author": "Sherlock Holmes",
+      "suspect": "Professor Moriarty",
+      "note": "He's a bad dude. He looks guilty.",
+      "id": 1
+    },
+    {
+      "author": "Ted",
+      "suspect": "Bryan",
+      "dateOfInterview": "2020-10-23",
+      "timestamp": 1603466434204,
+      "note": "Said not to be clever",
+      "id": 2
+    }
+  ]
+}

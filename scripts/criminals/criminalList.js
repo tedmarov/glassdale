@@ -1,12 +1,17 @@
 import { getCriminals, useCriminals } from "./criminalProvider.js"
 import { Criminal } from "./criminal.js"
 import { useConvictions } from "../convictions/convictionProvider.js"
-import { useOfficers } from "../officers/officerProvider.js"
-
-const criminalElement = document.querySelector(".criminals__list")
 
 const eventHub = document.querySelector(".container")
 
+const criminalElement = document.querySelector(".criminalsContainer")
+
+export const criminalList = () => {
+    getCriminals().then(() => {
+        // const criminalArray = useCriminals()
+        // render(criminalArray)        
+    })
+}
 
 // Listen for the custom event you dispatched in ConvictionSelect
 eventHub.addEventListener("crimeSelected", event => {
@@ -15,7 +20,7 @@ eventHub.addEventListener("crimeSelected", event => {
     Filter the criminals application state down to the people that committed the crime
         */
        
-       if(event.detail.crimeSelect !== 0) {
+    if(event.detail.crimeSelect !== 0) {
            
         const criminalsArray = useCriminals()
            
@@ -34,52 +39,42 @@ eventHub.addEventListener("crimeSelected", event => {
             criminalHTML += Criminal(criminal)
         }        
         criminalElement.innerHTML = `
-        <h3>DA BAD CONVIKSHUNZ</h3>
-        <div class="criminal__properties">
+        <h3>BY DA CONVIKSHUNZ</h3>
+        <div class="criminalsList">
         ${criminalHTML}
         </div>
         `
     }
 })
 
-eventHub.addEventListener("officerSelected", event => {
-    if(event.detail.officerSelect !==0) {
+eventHub.addEventListener("officerSelected", officerSelectedObject => {
+    const selectedOfficerName = officerSelectedObject.detail.copThatWasChosen
+    
         const criminalsArray = useCriminals()
 
-        const officersArray = useOfficers()
-
-        const officerThatWasChosen = officersArray.find(officerObject => {
-            return officerObject.id === event.detail.copThatWasChosen
+        const filteredCriminalsArray = criminalsArray.filter(
+            (criminalObject) => {
+            return criminalObject.arrestingOfficer === selectedOfficerName  
         })
 
-        const filteredCriminalsArray = criminalsArray.filter(criminalObject => {
-            return criminalObject.arrestingOfficer === officerThatWasChosen.name
-        })
-
-        let criminalHTML = ""
-        for (const criminal of filteredCriminalsArray) {
-            criminalHTML += Criminal(criminal)
-        }
-        criminalElement.innerHTML =`
-        <h3>DA BAD OFFICERZ</h3>
-        <div class="criminal__properties">
-        ${criminalHTML}
-        </div>
-        `
+        render(filteredCriminalsArray)
     }
-})
+)
 
 /*
 Then invoke render() and pass the filtered collection as
 an argument
 */
 
-
-
-export const criminalList = () => {
-    getCriminals().then(() => {
-        
+const render = (criminalsArray) => {
+    let criminalHTML = ""
+    for (const criminal of criminalsArray) {
+        criminalHTML += Criminal(criminal)
+        criminalElement.innerHTML = `
+        <h3>BY DA COPZ</h3>
+        <div class="criminalsList">
+        ${criminalHTML}
+        </div>
+        `
     }
-    )
-
-}
+}        
