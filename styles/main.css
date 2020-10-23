@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One");
-@import "./criminal.css";
 
 /*Typography
 --------------------------------------------------------------*/
@@ -15,9 +14,19 @@ textarea {
   
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1{
+  text-align: center;
   font-family: "Patua One", serif;
   letter-spacing: 2px;
+}
+
+h2,h3,h4,h5,h6 {
+  font-family: "Patua One", serif;
+  letter-spacing: 2px;
+}
+
+h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover{
+  background-color: white;
 }
 
 .pageHeader {
@@ -25,6 +34,25 @@ h1,h2,h3,h4,h5,h6 {
     text-align: center;     
     padding-bottom: 1em;
     background-color: white;
+}
+
+.criminalsList{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: space-between;
+  color: #7c6a0a;  
+}
+
+.criminal {
+    margin: 1rem;
+    padding: 0.5rem;
+    flex-basis: 25%;
+    width: fit-content
+}
+
+.criminal:hover{
+  background-color: white;
 }
 
 .filters{
@@ -44,10 +72,30 @@ h1,h2,h3,h4,h5,h6 {
   padding: 5px;
 }
 
-body{
+.note{
+  color: #7c6a0a;  
+}
 
+.note:hover{
+  background-color: white;
+}
+
+.investigation{
+  display: flex;
+}
+
+.criminalsContainer{
+  flex: 3;
+  background-color: rgba(255, 255, 255, 0.514);
+}
+
+.notesContainer{
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.514);
+}
+
+body{
     background-image: url(/resident-evil-3-stars-card_feature.jpg);
     background-attachment: fixed;
-
 }
 

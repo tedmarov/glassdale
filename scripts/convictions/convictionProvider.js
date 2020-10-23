@@ -4,9 +4,7 @@ figure out what kind of raw data it is. */
 
 let convictionDB = []
 
-export const useConvictions = () => {
-    return convictionDB.slice()
-}
+export const useConvictions = () => convictionDB.slice()
 
 export const getConvictions = () => {
     return fetch("https://criminals.glassdale.us/crimes")
