@@ -37,13 +37,13 @@ eventHub.addEventListener("crimeSelected", event => {
         let criminalHTML = ""
         for (const criminal of filteredCriminalsArray) {
             criminalHTML += Criminal(criminal)
+            criminalElement.innerHTML = `
+            <h3>BY DA CONVIKSHUNZ</h3>
+            <div class="criminalsList">
+            ${criminalHTML}
+            </div>
+            `
         }        
-        criminalElement.innerHTML = `
-        <h3>BY DA CONVIKSHUNZ</h3>
-        <div class="criminalsList">
-        ${criminalHTML}
-        </div>
-        `
     }
 })
 
