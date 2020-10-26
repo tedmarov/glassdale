@@ -1,15 +1,33 @@
+const eventHub = document.querySelector(".container")
 
 export const Criminal = (criminalObject) => {
     return `
-    <div class="criminal">
-    <div class="criminal--id" id="criminal--${criminalObject.id}">
-    <h2 class=criminal__name">Name: ${criminalObject.name}</h2>
+    <div id="criminal-${criminalObject.id}" class="criminal">
+    <h2>Name: ${criminalObject.name}</h2>
         <dd>Age: ${criminalObject.age}</dd>
         <dd>Crime: ${criminalObject.conviction}</dd>
         <dd>Officer: ${criminalObject.arrestingOfficer}<dd>
         <dd>Start Term: ${new Date(criminalObject.incarceration.start).toLocaleDateString('en-US')}</dd>
         <dd>End Term: ${new Date(criminalObject.incarceration.end).toLocaleDateString('en-US')}</dd>
-    </div>
-    </div>
+        <button id="associates--${criminalObject.id}">Associate Alibis</button>
+    </div>  
     `
 }
+
+
+eventHub.addEventListener("click", (eventObject) => {   
+    // split the id of the alibi button!
+    const [nameOfId, criminalId] = eventObject.target.id.split("--")
+    // check to see if the event button was clicked was alibi
+if (eventObject.target.id.startsWith("associates--")){
+    // console.log("button clicked was", nameOfId, criminalId)
+    // build a custom event
+    const myCustomEvent = new CustomEvent("alibiButtonClicked", {
+    detail: {   
+        criminalId: criminalId
+    }
+    })
+    //Dispatch so that other modules can listen for event
+    eventHub.dispatchEvent(myCustomEvent)
+}
+})

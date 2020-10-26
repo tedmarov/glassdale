@@ -7,9 +7,8 @@ button,
 input,
 select,
 textarea {
-	color: #404040;
+  color: #404040;
 	font-family: "Comfortaa", Arial, sans-serif;
-	font-size: 14px;
   line-height: 1.5;
   
 }
@@ -29,12 +28,10 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover{
   background-color: white;
 }
 
-.pageHeader {
-    padding: 15px;
-    text-align: center;     
-    padding-bottom: 1em;
-    background-color: white;
+.noteFormContainer{
+
 }
+
 
 .criminalsList{
   display: flex;
@@ -45,10 +42,10 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover{
 }
 
 .criminal {
-    margin: 1rem;
-    padding: 0.5rem;
-    flex-basis: 25%;
-    width: fit-content
+  margin: 1rem;
+  padding: 0.5rem;
+  flex-basis: 25%;
+  width: fit-content
 }
 
 .criminal:hover{
@@ -57,19 +54,14 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover{
 
 .filters{
   display: flex;
-  align-items: center;
 }
 
 .filters__crime{
-  padding: 5px;
+  flex: 1;
 }
 
 .filters__officers{
-  padding: 5px;
-}
-
-.filters__incarceration{
-  padding: 5px;
+  flex: 1;
 }
 
 .note{
@@ -98,4 +90,3 @@ body{
     background-image: url(/resident-evil-3-stars-card_feature.jpg);
     background-attachment: fixed;
 }
-
