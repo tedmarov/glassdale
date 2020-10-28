@@ -1,10 +1,10 @@
 {
   "notes": [
     {
-      "dateOfInterview": "10/21/2020",
-      "timestamp": "10/22/2020",
       "author": "Sherlock Holmes",
       "suspect": "Professor Moriarty",
+      "dateOfInterview": "10/21/2020",
+      "timestamp": "10/22/2020",
       "note": "He's a bad dude. He looks guilty.",
       "id": 1
     },
