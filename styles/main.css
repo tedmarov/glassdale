@@ -32,7 +32,6 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover{
 
 }
 
-
 .criminalsList{
   display: flex;
   flex-wrap: wrap;
@@ -41,14 +40,14 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover{
   color: #7c6a0a;  
 }
 
-.criminal {
+.criminal, .witness {
   margin: 1rem;
   padding: 0.5rem;
   flex-basis: 25%;
   width: fit-content
 }
 
-.criminal:hover{
+.criminal:hover, .witness:hover{
   background-color: white;
 }
 
@@ -76,7 +75,7 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover{
   display: flex;
 }
 
-.criminalsContainer{
+.caseDataContainer{
   flex: 3;
   background-color: rgba(255, 255, 255, 0.514);
 }
@@ -89,4 +88,8 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover{
 body{
     background-image: url(/resident-evil-3-stars-card_feature.jpg);
     background-attachment: fixed;
+}
+
+.officersContainer{
+  background-color: rgba(255, 255, 255, 0.514);
 }

@@ -40,3 +40,4 @@ eventHub.addEventListener("click", clickEvent => {
 export const NoteForm = () => {
     render()
 }
+

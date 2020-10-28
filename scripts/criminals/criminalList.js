@@ -4,7 +4,7 @@ import { useConvictions } from "../convictions/convictionProvider.js"
 
 const eventHub = document.querySelector(".container")
 
-const criminalElement = document.querySelector(".criminalsContainer")
+const criminalElement = document.querySelector(".caseDataContainer")
 
 export const criminalList = () => {
     getCriminals().then(() => {
@@ -78,3 +78,4 @@ const render = (criminalsArray) => {
         `
     }
 }        
+
