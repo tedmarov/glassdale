@@ -1,6 +1,7 @@
 const eventHub = document.querySelector(".container")
 
 export const Criminal = (criminalObject) => {
+    console.log(criminalObject)
     return `
     <div id="criminal-${criminalObject.id}" class="criminal__card">
     <h2>Suspect</h2>

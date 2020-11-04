@@ -14,6 +14,10 @@ const render = () => {
     `
 }
 
+export const NoteForm = () => {
+    render()
+}
+
 eventHub.addEventListener("click", clickEvent => {
     if(clickEvent.target.id === "saveNote") {
         //grab
@@ -36,8 +40,4 @@ eventHub.addEventListener("click", clickEvent => {
     }
 
 })
-
-export const NoteForm = () => {
-    render()
-}
 
