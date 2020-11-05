@@ -1,28 +1,42 @@
+import { getCriminals, useCriminals } from "../criminals/criminalProvider.js"
 import { saveNote } from "./notesDataProvider.js"
 
 const contentTarget = document.querySelector(".noteFormContainer")
 const eventHub = document.querySelector(".container")
 
 
-const render = () => {
+const render = criminal => {
     contentTarget.innerHTML = `
-    <input id="note--dateOfInterview" type="date"/>
-    <input id="note--author" type="text" placeholder="Your Name Here"/>
-    <input id="note--suspect" type="text" placeholder="Suspect Name"/>
-    <textarea id="note--note" placeholder="Your Note Here"></textarea>
-    <button id="saveNote">Save Note</button>
-    `
+        <input id="note--author" type="text" placeholder="Your Name Here"/>
+        <select id="note--criminal" class="dropdown">
+            <option value="0">Please select a criminal...</option>    
+            ${criminal.map(
+                    criminalObject => {
+                    return `<option value="${criminalObject.id}">${criminalObject.name}</option>`
+                    }
+                ).join("")
+            }        
+        <input id="note--dateOfInterview" type="date"/>
+        <textarea id="note--note" placeholder="Your Note Here"></textarea>
+        <button id="saveNote">Save Note</button>
+        </select>
+        `
 }
 
+
 export const NoteForm = () => {
-    render()
+    getCriminals()
+        .then(() => {
+            const criminalsArray = useCriminals()
+    render(criminalsArray)
+       })
 }
 
 eventHub.addEventListener("click", clickEvent => {
     if(clickEvent.target.id === "saveNote") {
         //grab
         const author = document.querySelector("#note--author").value
-        const suspect = document.querySelector("#note--suspect").value
+        const criminal = document.querySelector("#note--criminal").value
         const dateOfInterview = document.querySelector("#note--dateOfInterview").value
         const timestamp = Date.now()
         const note = document.querySelector("#note--note").value
@@ -30,7 +44,7 @@ eventHub.addEventListener("click", clickEvent => {
         //note Object
         const newNote = {
             author,
-            suspect,
+            criminal,
             dateOfInterview,
             timestamp,
             note
