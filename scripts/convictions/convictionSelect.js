@@ -25,6 +25,42 @@ const render = convictionsCollection => {
     `
 }
 
+export const convictionSelect = () => {
+    getConvictions()
+        .then(() => {
+            const convictions = useConvictions()
+            render(convictions)
+        })
+    }
+
+    // Get a reference to the DOM element where the <select> will be rendered
+
+    /*
+    Which element in your HTML contains all components?
+    That's your Event Hub. Get a reference to it here.
+    */
+   
+const eventHub = document.querySelector(".container")
+
+// On the event hub, listen for a "change" event.
+eventHub.addEventListener("change", (changeEvent) => { 
+
+    // Only do this if the `crimeSelect` element was changed
+if (changeEvent.target.id === "crimeSelect") {
+    
+    // Create custom event. Provide an appropriate name.
+    
+    const customEvent = new CustomEvent("crimeSelected", {
+        detail: {
+            crimeThatWasChosen: parseInt(changeEvent.target.value)
+        }
+    })
+    // Dispatch to event hub
+    eventHub.dispatchEvent(customEvent)
+}
+})
+
+
 // Previous version
 // export const convictionSelect = () => {
 //     // Get all convictions from application state
@@ -34,50 +70,14 @@ const render = convictionsCollection => {
 // })
 // }
 
-export const convictionSelect = () => {
-    getConvictions()
-        .then(() => {
-            const convictions = useConvictions()
-            render(convictions)
-        })
-}
-
-// Get a reference to the DOM element where the <select> will be rendered
-
-/*
-    Which element in your HTML contains all components?
-    That's your Event Hub. Get a reference to it here.
-*/
-
-const eventHub = document.querySelector(".container")
-
-// On the event hub, listen for a "change" event.
-eventHub.addEventListener("change", (changeEvent) => { 
-
-// Only do this if the `crimeSelect` element was changed
-    if (changeEvent.target.id === "crimeSelect") {
-        
-        // Create custom event. Provide an appropriate name.
-
-        const customEvent = new CustomEvent("crimeSelected", {
-            detail: {
-                crimeThatWasChosen: parseInt(changeEvent.target.value)
-            }
-        })
-        // Dispatch to event hub
-        eventHub.dispatchEvent(customEvent)
-    }
-})
-
-
-    // contentTarget.addEventListener("change", (event) => {
-
+// contentTarget.addEventListener("change", (event) => {
+    
     // if (event.target.id === "crimeSelect")
     //     const customEvent = new CustomEvent("convictionChosen", {
-    //         detail: {
-    //             crimeThatWasChosen: event.target.value
-    //     }
-    // })
-    // eventHub.dispatchEvent(event)
-    // })
+        //         detail: {
+//             crimeThatWasChosen: event.target.value
+//     }
+// })
+// eventHub.dispatchEvent(event)
+// })
 
