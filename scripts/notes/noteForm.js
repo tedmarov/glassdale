@@ -16,10 +16,10 @@ const render = criminal => {
                     }
                 ).join("")
             }        
+        </select>
         <input id="note--dateOfInterview" type="date"/>
         <textarea id="note--note" placeholder="Your Note Here"></textarea>
         <button id="saveNote">Save Note</button>
-        </select>
         `
 }
 
