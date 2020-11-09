@@ -24,6 +24,8 @@ export const NoteList = () => {
 }
 
 
+// Optional: | After render() : contentTarget.innerHTML = notesArray.map(note => { |
+// Delete let, for of loop, notesHTML, delete notesContainer. Insert Return above opening div, keep join.
 const render = (notesArray, criminalArray) => {    
     
     let notesHTML = ""
