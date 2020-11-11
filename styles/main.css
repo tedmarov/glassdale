@@ -40,11 +40,11 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover{
   color: #7c6a0a;  
 }
 
-.criminal, .witness {
+.criminal, .witness, .criminal__card {
   margin: 1rem;
   padding: 0.5rem;
   flex-basis: 25%;
-  width: fit-content
+  width: 275px;
 }
 
 .criminal:hover, .witness:hover{

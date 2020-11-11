@@ -1,6 +1,6 @@
 const eventHub = document.querySelector(".container")
 
-export const Criminal = (criminalObject) => {
+export const Criminal = (criminalObject, facility) => {
     console.log(criminalObject)
     return `
     <div id="criminal-${criminalObject.id}" class="criminal__card">
@@ -9,8 +9,14 @@ export const Criminal = (criminalObject) => {
         <dd>Age: ${criminalObject.age}</dd>
         <dd>Crime: ${criminalObject.conviction}</dd>
         <dd>Officer: ${criminalObject.arrestingOfficer}<dd>
-        <dd>Start Term: ${new Date(criminalObject.incarceration.start).toLocaleDateString('en-US')}</dd>
-        <dd>End Term: ${new Date(criminalObject.incarceration.end).toLocaleDateString('en-US')}</dd>
+        <dd>Incarceration:
+        ${new Date(criminalObject.incarceration.start).toLocaleDateString('en-US')}
+        to
+        ${new Date(criminalObject.incarceration.end).toLocaleDateString('en-US')}
+        </dd>
+        <dd>
+        Facility: ${facility.map(f => `${f.facilityName} `).join("")}
+        </dd>
         <button id="associates--${criminalObject.id}">Associate Alibis</button>
     </div>  
     `
