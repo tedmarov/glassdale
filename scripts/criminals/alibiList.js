@@ -35,7 +35,6 @@ const render = (criminalObject) => {
     <div class="alibi__list">
         ${criminalObject.known_associates.map(alibiObject => {
             return `
-            <h2>Alibi</h2>
             <h3>${alibiObject.name}</h3>
             <dd>${alibiObject.alibi}</dd>
             `

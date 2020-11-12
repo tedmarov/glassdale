@@ -1,8 +1,9 @@
 export const witnessStatement = (witnessObject) => {
     return `
-        <div class="witness">
-            <h2>Name: ${witnessObject.name}</h2>
-            <dd>Statements: ${witnessObject.statements}</dd>
+        <div class="witness__card">
+            <h2>Witness</h2>
+            <dd><b>Name:</b> ${witnessObject.name}</dd>
+            <dd>${witnessObject.statements}</dd>
         </div>
     `
 }
