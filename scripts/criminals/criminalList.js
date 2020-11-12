@@ -8,6 +8,10 @@ const eventHub = document.querySelector(".container")
 
 const criminalElement = document.querySelector(".caseDataContainer")
 
+let criminalArray = []
+let facilityArray = []
+let criminalFacilitiesArray = []
+
 export const criminalList = () => {
     // getCriminals()
     // .then(
@@ -15,11 +19,11 @@ export const criminalList = () => {
     .then(getCriminalFacilities)
     .then(
         () => {
-            const facilityArray = useFacilities()
-            const criminalFacilitiesArray = useCriminalFacilities()
-            const criminalArray = useCriminals()
+            criminalArray = useCriminals()
+            facilityArray = useFacilities()
+            criminalFacilitiesArray = useCriminalFacilities()
             //If rendering all criminals is required, throw in criminalArray
-            render(criminalArray, facilityArray, criminalFacilitiesArray)        
+            render()        
         })
     }
 
@@ -31,27 +35,20 @@ eventHub.addEventListener("crimeSelected", event => {
         */
        
     if(event.detail.crimeSelect !== 0) {
-           
-        const criminalsArray = useCriminals()
-           
+                      
         const convictionsArray = useConvictions()
-
-        const facilityArray = useFacilities()   
-
-        const criminalFacilitiesArray = useCriminalFacilities()
-
         
         const convictionThatWasChosen = convictionsArray.find(convictionObject => {
             return convictionObject.id === event.detail.crimeThatWasChosen
         })
 
-        const filteredCriminalsArray = criminalsArray.filter(criminalObject => {
+        const filteredCriminalsArray = criminalArray.filter(criminalObject => {
             return criminalObject.conviction === convictionThatWasChosen.name
         })
 
         let criminalHTML = ""
         for (const criminal of filteredCriminalsArray) {
-            const facilityERDCriminal = criminalFacilitiesArray.filter(cf => cf.criminalId === criminal.id)
+            const facilityERDCriminal = facilityArray.filter(cf => cf.criminalId === criminal.id)
             
             const facility = facilityERDCriminal.map(cf => {
                 const facilityObjectMatch = facilityArray.find(facility => facility.id === cf.facilityId)
@@ -70,19 +67,14 @@ eventHub.addEventListener("crimeSelected", event => {
 
 eventHub.addEventListener("officerSelected", officerSelectedObject => {
     const selectedOfficerName = officerSelectedObject.detail.copThatWasChosen
-    
-        const criminalsArray = useCriminals()
-
-        const facilitiesArray = useFacilities()
-        
-        const allRelationships = useCriminalFacilities()
-
-        const filteredCriminalsArray = criminalsArray.filter(
+    const selectedSuspect = criminalArray.filter(
             (criminalObject) => {
-            return criminalObject.arrestingOfficer === selectedOfficerName  
+            if (criminalObject.arrestingOfficer === selectedOfficerName) {
+                return true
+            }
         })
-
-        render(filteredCriminalsArray, facilitiesArray, allRelationships)
+            criminalArray = selectedSuspect
+        render()
     }
 )
 
@@ -91,14 +83,14 @@ Then invoke render() and pass the filtered collection as
 an argument
 */
 
-const render = (criminalArray, facilityArray, allRelationships) => {
+const render = () => {
     // Step 1 - Iterate all criminals
     let criminalHTML = ""
     criminalHTML = criminalArray.map(
         (criminalObject) => {
             
             // Step 2 - Filter all relationships to get only ones for this criminal
-            const facilityERDCriminal = allRelationships.filter(cf => cf.criminalId === criminalObject.id)
+            const facilityERDCriminal = criminalFacilitiesArray.filter(cf => cf.criminalId === criminalObject.id)
             
             // Step 3 - Convert the relationships to facilities with map()
             const facility = facilityERDCriminal.map(cf => {
@@ -110,17 +102,21 @@ const render = (criminalArray, facilityArray, allRelationships) => {
             return Criminal(criminalObject, facility)
         }
     ).join("")
-
+    
     criminalElement.innerHTML = criminalHTML
+    
+}        
 
-    // let criminalHTML = ""
-    // for (const criminal of criminalArray) {
-    //     criminalHTML += Criminal(criminal)
+// Alternative >> after let criminalHTML = ""
+    // for (const item of array) {
+    // Same logic for const, .map, .find
+    // })
+    // 
+    // criminalHTML += Criminal(criminal, facilities)
+    //
     //     criminalElement.innerHTML = `
     //     <div class="criminalsList">
     //     ${criminalHTML}
     //     </div>
     //     `
-    // }
-}        
-
+    //

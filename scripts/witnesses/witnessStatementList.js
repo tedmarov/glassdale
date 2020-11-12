@@ -11,7 +11,7 @@ const witnessesList = () => {
     })
 }
 
-eventHub.addEventListener("witnessButtonClicked", (eventObject) => {
+eventHub.addEventListener("witnessButtonClicked", () => {
 
         witnessesList()
     })
@@ -25,10 +25,9 @@ const render = (witnessStatementsArray) => {
     const witnessElement = document.querySelector(".caseDataContainer")
     
     witnessElement.innerHTML = `
-    <h2>Witness</h2>
-    <div class="witnesseslist">
+    <article class="witnessList">
         ${witnessStatementsHTML}
-</div>
-`
+    </article>
+    `
 }
 

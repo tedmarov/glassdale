@@ -7,6 +7,8 @@ import { officerList } from "./officers/officerList.js"
 import "./criminals/alibiList.js"
 import { renderWitnessButton } from "./witnesses/witnessStatementButton.js"
 import "./witnesses/witnessStatementList.js"
+import { renderFacilityButton } from "./facilities/displayFacilitiesButton.js"
+import "./facilities/facilityList.js"
 
 convictionSelect()
 officerList()
@@ -15,3 +17,4 @@ officerSelect()
 NoteForm()
 NoteList()
 renderWitnessButton()
+renderFacilityButton()

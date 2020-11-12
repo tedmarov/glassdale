@@ -10,7 +10,7 @@ textarea {
   color: #404040;
 	font-family: "Comfortaa", Arial, sans-serif;
   line-height: 1.5;
-  
+  margin-bottom: 5px;
 }
 
 h1{
@@ -28,26 +28,34 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover{
   background-color: white;
 }
 
-.noteFormContainer{
-
+.investigation{
+  display: flex;
 }
 
-.criminalsList{
+.notesContainer{
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.514);
+}
+
+.caseDataContainer, .criminalsList{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  align-content: space-between;
+  align-content: space-between; 
   color: #7c6a0a;  
+  width: auto;
+  flex: 3;
+  background-color: rgba(255, 255, 255, 0.514);
 }
 
-.criminal, .witness, .criminal__card {
+.criminal, .criminal__card, .facility__card, .witness__card{
+  display: block;
   margin: 1rem;
-  padding: 0.5rem;
+  padding: 0.5px 0.5px 0.5px 0.5px;
   flex-basis: 25%;
-  width: 275px;
 }
 
-.criminal:hover, .witness:hover{
+.criminal:hover, .witness__card:hover, .facility__card:hover{
   background-color: white;
 }
 
@@ -63,31 +71,22 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover{
   flex: 1;
 }
 
+.buttons__facilities{
+  flex: 1;
+}
+
 .note{
   color: #7c6a0a;  
 }
 
-.note:hover{
+.note:hover, .criminal__card:hover{
   background-color: white;
-}
-
-.investigation{
-  display: flex;
-}
-
-.caseDataContainer{
-  flex: 3;
-  background-color: rgba(255, 255, 255, 0.514);
-}
-
-.notesContainer{
-  flex: 1;
-  background-color: rgba(255, 255, 255, 0.514);
 }
 
 body{
     background-image: url(/resident-evil-3-stars-card_feature.jpg);
     background-attachment: fixed;
+    font-size: 14px;
 }
 
 .officersContainer{
